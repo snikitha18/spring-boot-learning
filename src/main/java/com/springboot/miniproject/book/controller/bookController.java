@@ -37,6 +37,8 @@ public class bookController {
 		 @RequestParam(defaultValue = "0") int page,
 		 @RequestParam(defaultValue = "5") int size,
 		 @RequestParam(defaultValue = "id") String sortBy,
+		 @RequestParam(required = false) String author,
+
 		 @RequestParam(defaultValue = "asc") String sortDir
 		) {
 		    Sort sort = sortDir.equalsIgnoreCase("asc")

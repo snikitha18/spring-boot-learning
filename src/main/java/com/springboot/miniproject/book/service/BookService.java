@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import com.springboot.miniproject.book.dto.BookDTO;
@@ -15,6 +16,7 @@ import com.springboot.miniproject.book.model.Books;
 import com.springboot.miniproject.book.repository.BookRepo;
 
 @Service
+@Profile("dev")
 public class BookService {
 	@Autowired
 	BookRepo repo;
