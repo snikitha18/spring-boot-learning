@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.springboot.miniproject.book.dto.BookDTO;
@@ -17,12 +19,12 @@ public class BookService {
 	@Autowired
 	BookRepo repo;
 	
-	public List<BookDTO> getAllBooks(){
-		List<Books> bkList=repo.findAll();
-		List<BookDTO> bkdtoList=new ArrayList();
-		for(Books bk:bkList) {
-			bkdtoList.add(convertToDTO(bk));
-		}
+	public Page<BookDTO> getAllBooks(Pageable pageable){
+		Page<Books> bookPage=repo.findAll(pageable);
+		Page<BookDTO> bkdtoList = bookPage.map(this::convertToDTO);
+		/*
+		 * for(Books bk:bkPage) { bkdtoList.add(convertToDTO(bk)); }
+		 */
 		return bkdtoList;
 	}
 	private BookDTO convertToDTO(Books book) {
