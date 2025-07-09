@@ -22,6 +22,7 @@ import com.springboot.miniproject.book.repository.BookRepo;
 import jakarta.annotation.PostConstruct;
 
 @Service
+@Profile("dev")
 public class BookService {
 
 	
