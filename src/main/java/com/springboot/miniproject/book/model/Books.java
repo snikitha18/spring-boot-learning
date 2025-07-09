@@ -1,6 +1,8 @@
 package com.springboot.miniproject.book.model;
 
 import org.hibernate.annotations.IdGeneratorType;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.springboot.miniproject.book.dto.BookDTO;
@@ -17,7 +19,7 @@ public class Books {
 	private long id;
 	private String name;
 	private String author;
-	
+		
 	public Books() {
 	}
 
@@ -26,6 +28,7 @@ public class Books {
 		this.author=author;
 	
 	}
+	
 	public long getId() {
 		return id;
 	}
