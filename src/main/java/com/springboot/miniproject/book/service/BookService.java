@@ -24,10 +24,10 @@ import jakarta.annotation.PostConstruct;
 @Service
 @Profile("dev")
 public class BookService {
-
 	
 	@Autowired
 	BookRepo repo;
+	
 	@PostConstruct
 	public void debugProfile() {
 	    System.out.println("Active Profile is: " + System.getProperty("spring.profiles.active"));
@@ -54,8 +54,7 @@ public class BookService {
 	private Books convertToEntity(BookDTO book) {		
 		return new Books(book.getName(),book.getAuthor());
 	}
-	public BookDTO updateBook(long id,BookDTO book){
-		
+	public BookDTO updateBook(long id,BookDTO book){		
 			Optional<Books> b = repo.findById(id);	
 			if(b.isPresent()) {
 				Books a = b.get();
@@ -65,14 +64,7 @@ public class BookService {
 				return convertToDTO(a);
 			}
 			Books saved = repo.save(convertToEntity(book));	
-			return convertToDTO(saved);	
-			
-			
-				
-			
-			
-		
-				
+			return convertToDTO(saved);				
 	}
 	public void deleteBook(long id)  throws BookNotFoundException {
 		Optional<Books> b = repo.findById(id);	
@@ -93,4 +85,6 @@ public class BookService {
 		info.put("ProjectAuthor", config.getAuthor());
 		return info;
 	}
+
+
 }
