@@ -39,10 +39,10 @@ public class JWTUtility {
     	    }
     }
 
-    public String generateToken(String username) {
+    public String generateToken(UserDetails userDetails) {
         Date now = new Date();
         return Jwts.builder()
-            .setSubject(username)
+            .setSubject(userDetails.getUsername())
             .setIssuedAt(now)
             .setExpiration(new Date(now.getTime() + jwtExpirationMs))
             .signWith(key)  // uses HS256 by default
